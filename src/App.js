@@ -61,7 +61,6 @@ function App() {
      Next Question
     </button>
    </section>
-   )
   </Ui>
  );
 }
