@@ -3,7 +3,7 @@ import { useGlobalContext } from './context';
 
 export default function SetupForm() {
  const { handleSubmit, quiz, error, handleChange } = useGlobalContext();
- console.log(quiz);
+
  return (
   <section className="container mx-auto flex justify-center">
    <form onSubmit={handleSubmit} className="bg-white flex p-10 flex-col w-1/2  rounded-md">
@@ -15,6 +15,7 @@ export default function SetupForm() {
      className="bg-slate-200 px-4 py-1 rounded-md"
      type="number"
      id="NumberQ"
+     value={quiz.amount}
      placeholder="10"
     />
 
@@ -22,6 +23,7 @@ export default function SetupForm() {
      Category
     </label>
     <select
+     value={quiz.category}
      onChange={handleChange}
      name="category"
      id="category"
@@ -35,6 +37,7 @@ export default function SetupForm() {
      Select Difficulty
     </label>
     <select
+     value={quiz.difficulty}
      onChange={handleChange}
      name="difficulty"
      id="difficulty"
@@ -44,8 +47,10 @@ export default function SetupForm() {
      <option value="hard">hard</option>
     </select>
 
+    {error && (
+     <p className="text-red-600 pt-6"> can't generate questions, please try different options</p>
+    )}
     <button className="bg-orange-400 px-4 py-2  mt-8 rounded-md">Start</button>
-    {error && <p> can't generate questions, please try different options</p>}
    </form>
   </section>
  );
